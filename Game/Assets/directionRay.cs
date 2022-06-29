@@ -15,7 +15,7 @@ public class directionRay : MonoBehaviour
     public List<GameObject> shotsList;
     public Transform localSpawn;
     public float maxDis = 10;
-    public float lerp = .01f;
+    public float forceMult = 40;
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
@@ -43,10 +43,10 @@ public class directionRay : MonoBehaviour
         point = vec / vec.magnitude;
         return point;
     }
-    private GameObject shootShot(Vector2 finalPos, Vector2 spawnPoint){
+    private GameObject shootShot(Vector2 force, Vector2 spawnPoint){
         localSpawn.position = spawnPoint;
         GameObject thisShot = Instantiate(shot, localSpawn.position, Quaternion.identity);
-        thisShot.transform.position = Vector2.Lerp(thisShot.transform.position, finalPos, lerp);
+        thisShot.GetComponent<Rigidbody2D>().AddForce(force*forceMult);
         return thisShot;
     }
 #endif
