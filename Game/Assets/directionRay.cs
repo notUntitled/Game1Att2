@@ -9,10 +9,13 @@ public class directionRay : MonoBehaviour
     public Transform player;
     private Vector3 mousePosition;
     public float deNormalizer = 1;
+    public float deLimiter = 1;
+    [SerializeField]
     public GameObject shot;
     public List<GameObject> shotsList;
     public Transform localSpawn;
     public float maxDis = 10;
+    public float lerp = .01f;
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
@@ -24,10 +27,14 @@ public class directionRay : MonoBehaviour
         Handles.DrawLine(player.position, baseToMouse / baseToMouse.magnitude);
         Handles.color = Color.red;
         Handles.DrawLine(getSpawnPoint(baseToMouse), baseToMouse / baseToMouse.magnitude * deNormalizer);
+    }
 
+    private void Update()
+    {
+        Vector2 baseToMouse = Input.mousePosition;
         if (Input.GetMouseButtonDown(0))
         {
-            shotsList.Add(shootShot(mousePosition, getSpawnPoint(baseToMouse)));
+            shotsList.Add(shootShot(baseToMouse/baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
         }
     }
 
@@ -36,10 +43,10 @@ public class directionRay : MonoBehaviour
         point = vec / vec.magnitude;
         return point;
     }
-    private GameObject shootShot(Vector2 mousePos, Vector2 spawnPoint){
+    private GameObject shootShot(Vector2 finalPos, Vector2 spawnPoint){
         localSpawn.position = spawnPoint;
-        GameObject thisShot = Instantiate(shot, localSpawn);
-        Vector2.MoveTowards(thisShot.transform.position, mousePos, maxDis);
+        GameObject thisShot = Instantiate(shot, localSpawn.position, Quaternion.identity);
+        thisShot.transform.position = Vector2.Lerp(thisShot.transform.position, finalPos, lerp);
         return thisShot;
     }
 #endif
