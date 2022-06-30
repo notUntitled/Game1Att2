@@ -50,4 +50,9 @@ public class EnemyAI : MonoBehaviour
         this.health = health;
     }
 
+    public float distFromPlayer()
+    {
+        return (enemy.transform.position - player.transform.position).magnitude;
+    }
+
 }

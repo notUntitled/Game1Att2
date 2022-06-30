@@ -16,8 +16,17 @@ public class directionRay : MonoBehaviour
     public Transform localSpawn;
     public float maxDis = 10;
     public float forceMult = 40;
-    public Transform mouseSim; 
+    public Transform mouseSim;
 
+    //Auto play
+    public Vector2 thinking;
+    public bool autoplay;
+    public float shotTimer;
+    public float tBtShots = 0.5f;
+    void Start()
+    {
+        shotTimer = Time.time;
+    }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
@@ -27,21 +36,55 @@ public class directionRay : MonoBehaviour
         Handles.color = Color.green;
 
         //Normalize vector by dividing by magnitude.
-        Handles.DrawLine(player.position, baseToMouse / baseToMouse.magnitude);
-        Handles.color = Color.yellow;
-        Handles.DrawLine(getSpawnPoint(baseToMouse), baseToMouse / baseToMouse.magnitude * deNormalizer);
-    }
-
-    private void Update()
-    {
-        Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-        if (Input.GetMouseButtonDown(0))
+        if (autoplay)
         {
-            shotsList.Add(shootShot(baseToMouse/baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
+            Handles.color = Color.cyan;
+            Handles.DrawLine(player.position, thinking);
+        }
+        else
+        {
+            Handles.color = Color.green;
+            Handles.DrawLine(player.position, baseToMouse / baseToMouse.magnitude);
+            Handles.color = Color.yellow;
+            Handles.DrawLine(getSpawnPoint(baseToMouse), baseToMouse / baseToMouse.magnitude * deNormalizer);
+        }
+    }
+#endif
+        private void Update()
+    {
+        if (autoplay)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject closestenemy = null;
+            float closestEnemyDist = 100f;
+            foreach (GameObject enemy in enemies)
+            {
+                if(enemy.GetComponent<EnemyAI>().distFromPlayer() < closestEnemyDist)
+                {
+                    closestenemy = enemy;
+                    thinking = closestenemy.transform.position;
+                    closestEnemyDist = enemy.GetComponent<EnemyAI>().distFromPlayer();
+                }
+            }
+
+            Vector2 autoPosition = new Vector3(closestenemy.transform.position.x, closestenemy.transform.position.y, 0);
+            if (Time.time - shotTimer >= tBtShots)
+            {
+                shotTimer = Time.time;
+                shotsList.Add(shootShot(thinking / thinking.magnitude * deLimiter, getSpawnPoint(thinking)));
+            }
+        }
+            else
+        {
+            Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            if (Input.GetMouseButtonDown(0))
+            {
+                shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
+            }
         }
     }
 
-    private Vector2 getSpawnPoint(Vector2 vec){
+        private Vector2 getSpawnPoint(Vector2 vec){
         Vector2 point;
         point = vec / vec.magnitude;
         return point;
@@ -53,5 +96,6 @@ public class directionRay : MonoBehaviour
         thisShot.GetComponent<Rigidbody2D>().AddForce(force*forceMult);
         return thisShot;
     }
-#endif
+
+
 }
