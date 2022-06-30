@@ -16,22 +16,25 @@ public class directionRay : MonoBehaviour
     public Transform localSpawn;
     public float maxDis = 10;
     public float forceMult = 40;
+    public Transform mouseSim; 
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        mouseSim.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
         Vector2 baseToMouse;
-        baseToMouse = Input.mousePosition;
+        baseToMouse = mouseSim.position;
         Handles.color = Color.green;
 
         //Normalize vector by dividing by magnitude.
         Handles.DrawLine(player.position, baseToMouse / baseToMouse.magnitude);
-        Handles.color = Color.red;
+        Handles.color = Color.yellow;
         Handles.DrawLine(getSpawnPoint(baseToMouse), baseToMouse / baseToMouse.magnitude * deNormalizer);
     }
 
     private void Update()
     {
-        Vector2 baseToMouse = Input.mousePosition;
+        Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
         if (Input.GetMouseButtonDown(0))
         {
             shotsList.Add(shootShot(baseToMouse/baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
@@ -45,7 +48,8 @@ public class directionRay : MonoBehaviour
     }
     private GameObject shootShot(Vector2 force, Vector2 spawnPoint){
         localSpawn.position = spawnPoint;
-        GameObject thisShot = Instantiate(shot, localSpawn.position, Quaternion.identity);
+        //GameObject thisShot = Instantiate(shot, new Vector3(Camera.main.ScreenToWorldPoint(spawnPoint).x, Camera.main.ScreenToWorldPoint(spawnPoint).y, 0), Quaternion.identity);
+        GameObject thisShot = Instantiate(shot, spawnPoint, Quaternion.identity);
         thisShot.GetComponent<Rigidbody2D>().AddForce(force*forceMult);
         return thisShot;
     }
