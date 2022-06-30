@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4313185539336848132, guid: 930b52a2bacae1f40966def80d50b364, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4313185539336848133, guid: 930b52a2bacae1f40966def80d50b364, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -222,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755126055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.121508, y: 11.799871, z: 0}
+  m_LocalPosition: {x: -7.2351427, y: 11.593454, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -243,6 +247,14 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 4313185539336848132, guid: 930b52a2bacae1f40966def80d50b364, type: 3}
+    - target: {fileID: 7115088128654877944, guid: a48ddfb732d135049adcade79f5c75df, type: 3}
+      propertyPath: camDelim
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115088128654877944, guid: a48ddfb732d135049adcade79f5c75df, type: 3}
+      propertyPath: boundvariable
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7115088128654877945, guid: a48ddfb732d135049adcade79f5c75df, type: 3}
       propertyPath: mouseSim
       value: 

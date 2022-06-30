@@ -6,12 +6,23 @@ public class ShotManager : MonoBehaviour
 {
     public GameObject shot;
     public Camera cam;
+    public CircleCollider2D collider;
+    private void Start()
+    {
+        collider = shot.GetComponent<CircleCollider2D>();
+    }
     void Update()
     {
         if (!inCameraView(shot))
         {
             GameObject.Destroy(shot);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(collider.gameObject);
+        Destroy(collision.gameObject);
     }
 
     public bool inCameraView(GameObject shot)
