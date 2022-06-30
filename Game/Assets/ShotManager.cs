@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class ShotManager : MonoBehaviour
 {
+    public GameObject playerref;
     public GameObject shot;
     public Camera cam;
-    public CircleCollider2D collider;
+    private CircleCollider2D collida;
+    private float damage;
+
     private void Start()
     {
-        collider = shot.GetComponent<CircleCollider2D>();
+        playerref = GameObject.Find("Player");
+        damage = playerref.GetComponent<PlayerStats>().getBaseDamage();
+        collida = shot.GetComponent<CircleCollider2D>();
     }
     void Update()
     {
@@ -21,8 +26,13 @@ public class ShotManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collider.gameObject);
-        Destroy(collision.gameObject);
+        Destroy(collida.gameObject);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameObject enemy = collision.gameObject;
+            Debug.Log("Shot an enemy with health: " + enemy.GetComponent<EnemyAI>().getHealth() + " \n Damage Done: " + getDamage());
+            enemy.GetComponent<EnemyAI>().DamageEnemy(getDamage());
+        }
     }
 
     public bool inCameraView(GameObject shot)
@@ -42,5 +52,10 @@ public class ShotManager : MonoBehaviour
         {
             return true;
         }
+    }
+
+    private float getDamage()
+    {
+        return damage;
     }
 }

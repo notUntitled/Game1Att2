@@ -118,8 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900dc21328f125244bd2cbbcd2a95da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerref: {fileID: 7115088128654877951, guid: a48ddfb732d135049adcade79f5c75df, type: 3}
   shot: {fileID: 6419985835575836963}
   cam: {fileID: 8080320332931217045, guid: d95638e0d8a24d2469ec45a0dd05cb1c, type: 3}
+  collider: {fileID: 0}
 --- !u!58 &-5593835068475750139
 CircleCollider2D:
   m_ObjectHideFlags: 0

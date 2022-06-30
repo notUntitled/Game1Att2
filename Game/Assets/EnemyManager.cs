@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject player;
     [SerializeField]
     public GameObject enemy;
-    public float health;
+    private float health;
     public Camera cam;
     public float lastTime;
     public int round;
@@ -29,17 +29,17 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         //Every x seconds
-        if (Time.time-lastTime >= timeBetweenSpawn)
+        if (Time.time - lastTime >= timeBetweenSpawn)
         {
             lastTime = Time.time;
-            spawnEnemy(round);
-            Debug.Log("Spawning Enemy");
+            spawnEnemy(5);
         }
     }
 
     public GameObject spawnEnemy(float health)
     {
         GameObject thisenemy = Instantiate(enemy, randomPosition(), Quaternion.identity);
+        thisenemy.GetComponent<EnemyAI>().spawnEnemy(health, 0);
         return thisenemy;
     }
 
@@ -90,47 +90,47 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
-       /* if (pos.x < basepos.x + boundvariable && pos.x > basepos.x - boundvariable && pos.y < basepos.y + boundvariable && pos.x > basepos.y - boundvariable && pos.y < basepos.y + boundvariable && pos.y > basepos.y - boundvariable)
-        {
-            if (pos.x < basepos.x + boundvariable && pos.x > basepos.x - boundvariable && pos.y < basepos.y + boundvariable && pos.x > basepos.y - boundvariable)
-            {
-                int addOSub = (int)Random.Range(0, 2);
+        /* if (pos.x < basepos.x + boundvariable && pos.x > basepos.x - boundvariable && pos.y < basepos.y + boundvariable && pos.x > basepos.y - boundvariable && pos.y < basepos.y + boundvariable && pos.y > basepos.y - boundvariable)
+         {
+             if (pos.x < basepos.x + boundvariable && pos.x > basepos.x - boundvariable && pos.y < basepos.y + boundvariable && pos.x > basepos.y - boundvariable)
+             {
+                 int addOSub = (int)Random.Range(0, 2);
 
-                switch (addOSub)
-                {
-                    case 0:
-                        pos.x += Random.Range(boundvariable * 2, boundvariable * 4);
-                        break;
+                 switch (addOSub)
+                 {
+                     case 0:
+                         pos.x += Random.Range(boundvariable * 2, boundvariable * 4);
+                         break;
 
-                    case 1:
-                        pos.x -= Random.Range(boundvariable * 2, boundvariable * 4);
-                        break;
+                     case 1:
+                         pos.x -= Random.Range(boundvariable * 2, boundvariable * 4);
+                         break;
 
-                    default:
-                        pos.x -= Random.Range(boundvariable * 2, boundvariable * 4);
-                        break;
-                }
-            }
-            if (pos.y < basepos.y + boundvariable && pos.y > basepos.y - boundvariable)
-            {
-                int addOSub = (int)Random.Range(0, 2);
+                     default:
+                         pos.x -= Random.Range(boundvariable * 2, boundvariable * 4);
+                         break;
+                 }
+             }
+             if (pos.y < basepos.y + boundvariable && pos.y > basepos.y - boundvariable)
+             {
+                 int addOSub = (int)Random.Range(0, 2);
 
-                switch (addOSub)
-                {
-                    case 0:
-                        pos.y += Random.Range(boundvariable * 2, boundvariable * 4);
-                        break;
+                 switch (addOSub)
+                 {
+                     case 0:
+                         pos.y += Random.Range(boundvariable * 2, boundvariable * 4);
+                         break;
 
-                    case 1:
-                        pos.y -= Random.Range(boundvariable * 2, boundvariable * 4);
-                        break;
+                     case 1:
+                         pos.y -= Random.Range(boundvariable * 2, boundvariable * 4);
+                         break;
 
-                    default:
-                        pos.y -= Random.Range(boundvariable * 2, boundvariable * 4);
-                        break;
-                }
-            }
-        }*/
+                     default:
+                         pos.y -= Random.Range(boundvariable * 2, boundvariable * 4);
+                         break;
+                 }
+             }
+         }*/
         return pos;
     }
 }
