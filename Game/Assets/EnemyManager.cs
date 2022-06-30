@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
     public Camera cam;
     public float lastTime;
     public int round;
+    public int camDelim;
+    //public int boundvariable;
     public float timeBetweenSpawn = 1f;
     private void Start()
     {
@@ -45,13 +47,13 @@ public class EnemyManager : MonoBehaviour
     {
         Vector3 pos;
         Vector3 basepos = cam.transform.position;
-        pos = new Vector3(Random.Range(basepos.x + cam.orthographicSize * 2, basepos.x - cam.orthographicSize * 2), Random.Range(basepos.y + cam.aspect * 3, basepos.y - cam.aspect * 3), 0);
-        if(pos.x < basepos.x + 2 && pos.x > basepos.x - 2 && pos.y < basepos.y + 2 && pos.x > basepos.y - 2 && pos.y < basepos.y + 2 && pos.y > basepos.y - 2) 
+        pos = new Vector3(Random.Range(basepos.x + cam.orthographicSize * camDelim, basepos.x - cam.orthographicSize * camDelim), Random.Range(basepos.y + cam.aspect * camDelim, basepos.y - cam.aspect * camDelim), 0);
+        if (pos.x < basepos.x + 2 && pos.x > basepos.x - 2 && pos.y < basepos.y + 2 && pos.x > basepos.y - 2 && pos.y < basepos.y + 2 && pos.y > basepos.y - 2)
         {
             if (pos.x < basepos.x + 2 && pos.x > basepos.x - 2 && pos.y < basepos.y + 2 && pos.x > basepos.y - 2)
             {
                 int addOSub = (int)Random.Range(0, 2);
-               
+
                 switch (addOSub)
                 {
                     case 0:
@@ -70,7 +72,7 @@ public class EnemyManager : MonoBehaviour
             if (pos.y < basepos.y + 2 && pos.y > basepos.y - 2)
             {
                 int addOSub = (int)Random.Range(0, 2);
-                
+
                 switch (addOSub)
                 {
                     case 0:
@@ -87,6 +89,48 @@ public class EnemyManager : MonoBehaviour
                 }
             }
         }
+
+       /* if (pos.x < basepos.x + boundvariable && pos.x > basepos.x - boundvariable && pos.y < basepos.y + boundvariable && pos.x > basepos.y - boundvariable && pos.y < basepos.y + boundvariable && pos.y > basepos.y - boundvariable)
+        {
+            if (pos.x < basepos.x + boundvariable && pos.x > basepos.x - boundvariable && pos.y < basepos.y + boundvariable && pos.x > basepos.y - boundvariable)
+            {
+                int addOSub = (int)Random.Range(0, 2);
+
+                switch (addOSub)
+                {
+                    case 0:
+                        pos.x += Random.Range(boundvariable * 2, boundvariable * 4);
+                        break;
+
+                    case 1:
+                        pos.x -= Random.Range(boundvariable * 2, boundvariable * 4);
+                        break;
+
+                    default:
+                        pos.x -= Random.Range(boundvariable * 2, boundvariable * 4);
+                        break;
+                }
+            }
+            if (pos.y < basepos.y + boundvariable && pos.y > basepos.y - boundvariable)
+            {
+                int addOSub = (int)Random.Range(0, 2);
+
+                switch (addOSub)
+                {
+                    case 0:
+                        pos.y += Random.Range(boundvariable * 2, boundvariable * 4);
+                        break;
+
+                    case 1:
+                        pos.y -= Random.Range(boundvariable * 2, boundvariable * 4);
+                        break;
+
+                    default:
+                        pos.y -= Random.Range(boundvariable * 2, boundvariable * 4);
+                        break;
+                }
+            }
+        }*/
         return pos;
     }
 }

@@ -125,3 +125,4 @@ MonoBehaviour:
   enemy: {fileID: 4313185539336848132}
   player: {fileID: 7115088128654877951, guid: a48ddfb732d135049adcade79f5c75df, type: 3}
   lerp: 0
+  enemySpeedLimiter: 3
