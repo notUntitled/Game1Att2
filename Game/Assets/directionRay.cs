@@ -82,7 +82,7 @@ public class directionRay : MonoBehaviour
         {
             Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
             player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg*playerRotationZ(baseToMouse) - 90);
-            while (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
             }

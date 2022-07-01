@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     }
     void Update()
     {
-        while (player.GetComponent<directionRay>().moving)
+        if (player.GetComponent<directionRay>().moving)
         {
             lerp += .01f / enemySpeedLimiter * Time.deltaTime;
             enemy.transform.position = Vector2.Lerp(enemy.transform.position, player.transform.position, lerp);
