@@ -50,7 +50,7 @@ public class directionRay : MonoBehaviour
         }
     }
 #endif
-        private void Update()
+    private void Update()
     {
         if (autoplay)
         {
@@ -59,7 +59,7 @@ public class directionRay : MonoBehaviour
             float closestEnemyDist = 100f;
             foreach (GameObject enemy in enemies)
             {
-                if(enemy.GetComponent<EnemyAI>().distFromPlayer() < closestEnemyDist)
+                if (enemy.GetComponent<EnemyAI>().distFromPlayer() < closestEnemyDist)
                 {
                     closestenemy = enemy;
                     thinking = closestenemy.transform.position;
@@ -74,9 +74,10 @@ public class directionRay : MonoBehaviour
                 shotsList.Add(shootShot(thinking / thinking.magnitude * deLimiter, getSpawnPoint(thinking)));
             }
         }
-            else
+        else
         {
             Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg*playerRotationZ(baseToMouse) - 90);
             if (Input.GetMouseButtonDown(0))
             {
                 shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
@@ -84,18 +85,24 @@ public class directionRay : MonoBehaviour
         }
     }
 
-        private Vector2 getSpawnPoint(Vector2 vec){
+    private Vector2 getSpawnPoint(Vector2 vec)
+    {
         Vector2 point;
         point = vec / vec.magnitude;
         return point;
     }
-    private GameObject shootShot(Vector2 force, Vector2 spawnPoint){
+    private GameObject shootShot(Vector2 force, Vector2 spawnPoint)
+    {
         localSpawn.position = spawnPoint;
         //GameObject thisShot = Instantiate(shot, new Vector3(Camera.main.ScreenToWorldPoint(spawnPoint).x, Camera.main.ScreenToWorldPoint(spawnPoint).y, 0), Quaternion.identity);
         GameObject thisShot = Instantiate(shot, spawnPoint, Quaternion.identity);
-        thisShot.GetComponent<Rigidbody2D>().AddForce(force*forceMult);
+        thisShot.GetComponent<Rigidbody2D>().AddForce(force * forceMult);
         return thisShot;
     }
 
+    private float playerRotationZ(Vector2 baseVec)
+    {
+        return Mathf.Atan2(baseVec.y, baseVec.x);
+    }
 
 }
