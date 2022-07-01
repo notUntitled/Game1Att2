@@ -16,7 +16,32 @@ public class PlayerStats : MonoBehaviour
         gold = 0;
         baseShots = 1;
     }
-    //Getter-Setter
+
+    //Functionality
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("collision");
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy collided");
+            setBaseHealth(baseHealth - collision.gameObject.GetComponent<EnemyAI>().getHealth());
+            GameObject.Destroy(collision.gameObject);
+            if (baseHealth <= 0)
+            {
+                playerDead();
+            }
+        }
+    }
+
+    private void playerDead()
+    {
+        Debug.Log("Dead");
+    }
+
+    //Getter
+
+
 
     public float getBaseDamage()
     {
@@ -47,7 +72,9 @@ public class PlayerStats : MonoBehaviour
 
     private void setBaseHealth(float newhealth)
     {
+        Debug.Log("Previous Health: " + baseHealth);
         baseHealth = newhealth;
+        Debug.Log("New health: " + baseHealth);
     }
 
     private void setGold(float newgold)
@@ -59,4 +86,5 @@ public class PlayerStats : MonoBehaviour
     {
         baseShots = newBaseShots;
     }
+
 }

@@ -26,9 +26,9 @@ public class ShotManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collida.gameObject);
         if (collision.gameObject.tag == "Enemy")
         {
+            Destroy(collida.gameObject);
             GameObject enemy = collision.gameObject;
             Debug.Log("Shot an enemy with health: " + enemy.GetComponent<EnemyAI>().getHealth() + " \n Damage Done: " + getDamage());
             enemy.GetComponent<EnemyAI>().DamageEnemy(getDamage());
