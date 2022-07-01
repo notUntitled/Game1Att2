@@ -21,17 +21,22 @@ public class EnemyAI : MonoBehaviour
     }
     void Update()
     {
-        lerp += .01f / enemySpeedLimiter * Time.deltaTime;
-        enemy.transform.position = Vector2.Lerp(enemy.transform.position, player.transform.position, lerp);
+        while (player.GetComponent<directionRay>().moving)
+        {
+            lerp += .01f / enemySpeedLimiter * Time.deltaTime;
+            enemy.transform.position = Vector2.Lerp(enemy.transform.position, player.transform.position, lerp);
+        }
 
-    }
+        }
 
-    public void DamageEnemy(float damage)
+        public void DamageEnemy(float damage)
     {
         if (health - damage <= 0)
         {
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
             GameObject.Destroy(enemy);
             Debug.Log("Destroyed enemy");
+            playerStats.setPoints(playerStats.getPoints() + 1);
             //Overkill
         }
         else

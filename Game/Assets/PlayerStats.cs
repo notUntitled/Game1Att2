@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     private float baseHealth;
     private float gold;
     private int baseShots;
-
+    public int points;
     private void Start()
     {
         baseDamage = 3;
@@ -63,6 +63,10 @@ public class PlayerStats : MonoBehaviour
         return baseShots;
     }
 
+    public int getPoints()
+    {
+        return points;
+    }
     //Setters
 
     private void setBaseDamage(float newDamage)
@@ -87,4 +91,8 @@ public class PlayerStats : MonoBehaviour
         baseShots = newBaseShots;
     }
 
+    public void setPoints(int newPoints)
+    {
+        points = newPoints;
+    }
 }

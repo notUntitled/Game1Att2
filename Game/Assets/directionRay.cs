@@ -23,6 +23,9 @@ public class directionRay : MonoBehaviour
     public bool autoplay;
     public float shotTimer;
     public float tBtShots = 0.5f;
+
+    //Manager
+    public bool moving;
     void Start()
     {
         shotTimer = Time.time;
@@ -68,6 +71,7 @@ public class directionRay : MonoBehaviour
             }
 
             Vector2 autoPosition = new Vector3(closestenemy.transform.position.x, closestenemy.transform.position.y, 0);
+            player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg * playerRotationZ(autoPosition) - 90);
             if (Time.time - shotTimer >= tBtShots)
             {
                 shotTimer = Time.time;
@@ -78,7 +82,7 @@ public class directionRay : MonoBehaviour
         {
             Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
             player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg*playerRotationZ(baseToMouse) - 90);
-            if (Input.GetMouseButtonDown(0))
+            while (Input.GetMouseButtonDown(0))
             {
                 shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
             }
