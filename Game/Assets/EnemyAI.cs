@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     public float lerp;
     public float enemySpeedLimiter;
     private float health;
-
+    public directionRay manager;
     public void spawnEnemy(float health, int type)
     {
         setHealth(health);
@@ -18,12 +18,14 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
+        manager = player.GetComponent<directionRay>();
     }
     void Update()
     {
         if (player.GetComponent<directionRay>().moving)
         {
             lerp += .01f / enemySpeedLimiter * Time.deltaTime;
+            if(manager.moving && !manager.timePause && !manager.pause)
             enemy.transform.position = Vector2.Lerp(enemy.transform.position, player.transform.position, lerp);
         }
 

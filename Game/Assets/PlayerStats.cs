@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     private float gold;
     private int baseShots;
     public int points;
+    public Score score;
     private void Start()
     {
         baseDamage = 3;
@@ -94,5 +95,6 @@ public class PlayerStats : MonoBehaviour
     public void setPoints(int newPoints)
     {
         points = newPoints;
+        score.updateScore(points);
     }
 }

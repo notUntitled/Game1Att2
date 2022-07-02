@@ -26,6 +26,8 @@ public class directionRay : MonoBehaviour
 
     //Manager
     public bool moving;
+    public bool pause;
+    public bool timePause;
     void Start()
     {
         shotTimer = Time.time;
@@ -55,6 +57,14 @@ public class directionRay : MonoBehaviour
 #endif
     private void Update()
     {
+        if (timePause)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
         if (autoplay)
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
