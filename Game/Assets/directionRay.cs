@@ -74,7 +74,7 @@ public class directionRay : MonoBehaviour
             pause = !pause;
         }
 
-        if (pause)
+        if (pause && !dead)
         {
             dim.gameObject.SetActive(true);
             pauseSc.gameObject.SetActive(true);
@@ -85,9 +85,9 @@ public class directionRay : MonoBehaviour
             if (!dead)
             {
                 dim.gameObject.SetActive(false);
+                Time.timeScale = 1;
+                pauseSc.gameObject.SetActive(false);
             }
-            pauseSc.gameObject.SetActive(false);
-            Time.timeScale = 1;
         }
         if (!pause && !dead)
         {
