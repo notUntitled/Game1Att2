@@ -18,12 +18,15 @@ public class directionRay : MonoBehaviour
     public float maxDis = 10;
     public float forceMult = 40;
     public Transform mouseSim;
+    public bool dead;
+    public float timeOfAttack;
 
     //Auto play
     public Vector2 thinking;
     public bool autoplay;
     public float shotTimer;
     public float tBtShots = 0.5f;
+    public PlayerStats playerRef;
 
     //Manager
     public bool moving;
@@ -33,8 +36,11 @@ public class directionRay : MonoBehaviour
     //UI
     public Image dim;
     public TMPro.TextMeshProUGUI pauseSc;
+    public TMPro.TextMeshProUGUI deadSc;
     void Start()
     {
+        timeOfAttack = 0f;
+        playerRef = GetComponent<PlayerStats>();
         Screen.SetResolution(1920, 1080, true);
         shotTimer = Time.time;
     }
@@ -76,11 +82,14 @@ public class directionRay : MonoBehaviour
         }
         else
         {
-            dim.gameObject.SetActive(false);
+            if (!dead)
+            {
+                dim.gameObject.SetActive(false);
+            }
             pauseSc.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
-        if (!pause)
+        if (!pause && !dead)
         {
             if (autoplay)
             {
@@ -109,15 +118,16 @@ public class directionRay : MonoBehaviour
             {
                 Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
                 player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg * playerRotationZ(baseToMouse) - 90);
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && Time.time > (timeOfAttack + playerRef.getAtkSpd()))
                 {
+                    timeOfAttack = Time.time;
                     shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
                 }
             }
         }
-     }
+    }
 
-        private Vector2 getSpawnPoint(Vector2 vec)
+    private Vector2 getSpawnPoint(Vector2 vec)
     {
         Vector2 point;
         point = vec / vec.magnitude;
@@ -135,6 +145,14 @@ public class directionRay : MonoBehaviour
     private float playerRotationZ(Vector2 baseVec)
     {
         return Mathf.Atan2(baseVec.y, baseVec.x);
+    }
+
+    public void playerDied()
+    {
+        dead = true;
+        dim.gameObject.SetActive(true);
+        deadSc.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
 }

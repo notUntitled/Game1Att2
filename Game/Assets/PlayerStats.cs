@@ -10,8 +10,11 @@ public class PlayerStats : MonoBehaviour
     private int baseShots;
     public int points;
     public Score score;
+    public float atkSpd;
+    public directionRay player;
     private void Start()
     {
+        atkSpd = .5f;
         baseDamage = 3;
         baseHealth = 5;
         gold = 0;
@@ -37,7 +40,8 @@ public class PlayerStats : MonoBehaviour
 
     private void playerDead()
     {
-        Debug.Log("Dead");
+        player.playerDied();
+
     }
 
     //Getter
@@ -68,6 +72,11 @@ public class PlayerStats : MonoBehaviour
     {
         return points;
     }
+
+    public float getAtkSpd()
+    {
+        return atkSpd;
+    }
     //Setters
 
     private void setBaseDamage(float newDamage)
@@ -96,5 +105,9 @@ public class PlayerStats : MonoBehaviour
     {
         points = newPoints;
         score.updateScore(points);
+    }
+    public void setAtkspd(float newAtkSpd)
+    {
+        atkSpd = newAtkSpd;
     }
 }
