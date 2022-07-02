@@ -62,6 +62,7 @@
     <Compile Include="Assets\Score.cs" />
     <Compile Include="Assets\Restart.cs" />
     <Compile Include="Assets\QuitGame.cs" />
+    <Compile Include="Assets\HealthManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
