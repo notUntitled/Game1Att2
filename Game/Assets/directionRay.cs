@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -30,7 +31,7 @@ public class directionRay : MonoBehaviour
     public bool timePause;
 
     //UI
-
+    public Image dim;
     public TMPro.TextMeshProUGUI pauseSc;
     void Start()
     {
@@ -68,11 +69,13 @@ public class directionRay : MonoBehaviour
 
         if (pause)
         {
+            dim.gameObject.SetActive(true);
             pauseSc.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
         else
         {
+            dim.gameObject.SetActive(false);
             pauseSc.gameObject.SetActive(false);
             Time.timeScale = 1;
         }

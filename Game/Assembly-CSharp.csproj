@@ -60,6 +60,8 @@
     <Compile Include="Assets\EnemyManager.cs" />
     <Compile Include="Assets\ShotManager.cs" />
     <Compile Include="Assets\Score.cs" />
+    <Compile Include="Assets\Restart.cs" />
+    <Compile Include="Assets\QuitGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
