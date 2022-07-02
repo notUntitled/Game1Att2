@@ -23,7 +23,7 @@ public class Score : MonoBehaviour
         }
         else if (score / 100 < 1)
         {
-            textAdd = "0";
+            textAdd = "00";
         }
         else if (score / 1000 < 1)
         {

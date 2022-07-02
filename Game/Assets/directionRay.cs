@@ -28,6 +28,10 @@ public class directionRay : MonoBehaviour
     public bool moving;
     public bool pause;
     public bool timePause;
+
+    //UI
+
+    public TMPro.TextMeshProUGUI pauseSc;
     void Start()
     {
         shotTimer = Time.time;
@@ -57,49 +61,59 @@ public class directionRay : MonoBehaviour
 #endif
     private void Update()
     {
-        if (timePause)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
+            pause = !pause;
+        }
+
+        if (pause)
+        {
+            pauseSc.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
         else
         {
+            pauseSc.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
-        if (autoplay)
+        if (!pause)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            GameObject closestenemy = null;
-            float closestEnemyDist = 100f;
-            foreach (GameObject enemy in enemies)
+            if (autoplay)
             {
-                if (enemy.GetComponent<EnemyAI>().distFromPlayer() < closestEnemyDist)
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                GameObject closestenemy = null;
+                float closestEnemyDist = 100f;
+                foreach (GameObject enemy in enemies)
                 {
-                    closestenemy = enemy;
-                    thinking = closestenemy.transform.position;
-                    closestEnemyDist = enemy.GetComponent<EnemyAI>().distFromPlayer();
+                    if (enemy.GetComponent<EnemyAI>().distFromPlayer() < closestEnemyDist)
+                    {
+                        closestenemy = enemy;
+                        thinking = closestenemy.transform.position;
+                        closestEnemyDist = enemy.GetComponent<EnemyAI>().distFromPlayer();
+                    }
+                }
+
+                Vector2 autoPosition = new Vector3(closestenemy.transform.position.x, closestenemy.transform.position.y, 0);
+                player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg * playerRotationZ(autoPosition) - 90);
+                if (Time.time - shotTimer >= tBtShots)
+                {
+                    shotTimer = Time.time;
+                    shotsList.Add(shootShot(thinking / thinking.magnitude * deLimiter, getSpawnPoint(thinking)));
                 }
             }
-
-            Vector2 autoPosition = new Vector3(closestenemy.transform.position.x, closestenemy.transform.position.y, 0);
-            player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg * playerRotationZ(autoPosition) - 90);
-            if (Time.time - shotTimer >= tBtShots)
+            else
             {
-                shotTimer = Time.time;
-                shotsList.Add(shootShot(thinking / thinking.magnitude * deLimiter, getSpawnPoint(thinking)));
+                Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+                player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg * playerRotationZ(baseToMouse) - 90);
+                if (Input.GetMouseButton(0))
+                {
+                    shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
+                }
             }
         }
-        else
-        {
-            Vector2 baseToMouse = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y, Mathf.Rad2Deg*playerRotationZ(baseToMouse) - 90);
-            if (Input.GetMouseButton(0))
-            {
-                shotsList.Add(shootShot(baseToMouse / baseToMouse.magnitude * deLimiter, getSpawnPoint(baseToMouse)));
-            }
-        }
-    }
+     }
 
-    private Vector2 getSpawnPoint(Vector2 vec)
+        private Vector2 getSpawnPoint(Vector2 vec)
     {
         Vector2 point;
         point = vec / vec.magnitude;
