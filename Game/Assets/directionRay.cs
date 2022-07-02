@@ -35,6 +35,7 @@ public class directionRay : MonoBehaviour
     public TMPro.TextMeshProUGUI pauseSc;
     void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
         shotTimer = Time.time;
     }
 #if UNITY_EDITOR
