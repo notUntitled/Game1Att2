@@ -98,7 +98,7 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Previous Health: " + baseHealth);
         baseHealth = newhealth;
         Debug.Log("New health: " + baseHealth);
-        healthManager.updateHealthBar(healthbar, 0, 150, getBaseHealth()/getTotalHealth());
+        healthManager.updateHealthBar(getBaseHealth()/getTotalHealth());
     }
 
     public void getTotalHealth(float newTotalhealth)

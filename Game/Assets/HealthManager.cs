@@ -7,10 +7,11 @@ public class HealthManager : MonoBehaviour
     public UnityEngine.UI.Image healthbar1;
     public UnityEngine.UI.Image healthbar2;
     public PlayerStats stats;
-    public float test;
     public float percenHealth;
     [Range(0f,1f)]
     public float lerpalot;
+    public bool increasingLerp;
+    public float multiplier;
 
     private void Start()
     {
@@ -19,27 +20,40 @@ public class HealthManager : MonoBehaviour
 
     private void Update()
     {
+        if (increasingLerp)
+        {
+            lerpalot += .005f * multiplier;
+            healthFX();
+        }
+        else
+        {
+            lerpalot = 0f;
+        }
+
+        if (lerpalot >= 1f) {
+            increasingLerp = false;
+        }
     }
 
     //OPTIMIZATION: Make both of the healthbars use the same function.
-    public void updateHealthBar(UnityEngine.UI.Image healthbar, float a, float b, float t)
+    public void updateHealthBar(float t)
     {
         if (t < 0)
         {
             t = 0;
         }
         percenHealth = t;
-        float lerped = Mathf.Lerp(a, b, t);
-        healthbar.rectTransform.sizeDelta = new Vector2(t * healthbar.rectTransform.sizeDelta.x, healthbar.rectTransform.sizeDelta.y);
-        healthbar.rectTransform.localPosition = new Vector3(-150, healthbar.rectTransform.localPosition.y, healthbar.rectTransform.localPosition.z);
+        healthbar1.rectTransform.sizeDelta = new Vector2(t * healthbar1.rectTransform.sizeDelta.x, healthbar1.rectTransform.sizeDelta.y);
+        healthbar1.rectTransform.localPosition = new Vector3(-150, healthbar1.rectTransform.localPosition.y, healthbar1.rectTransform.localPosition.z);
+        increasingLerp = true;
         healthFX();
     }
 
-    /*public void healthFX()
+    public void healthFX()
     {
-        healthbar.rectTransform.sizeDelta = new Vector2(t * healthbar.rectTransform.sizeDelta.x, healthbar.rectTransform.sizeDelta.y);
+        healthbar2.rectTransform.sizeDelta = new Vector2(Mathf.Lerp(healthbar2.rectTransform.sizeDelta.x, healthbar1.rectTransform.sizeDelta.x, lerpalot), healthbar2.rectTransform.sizeDelta.y);
 
         healthbar2.rectTransform.localPosition = new Vector3(-150, healthbar2.rectTransform.localPosition.y, healthbar2.rectTransform.localPosition.z);
-        lerpalot = 0;
-    }*/
+        
+    }
 }
