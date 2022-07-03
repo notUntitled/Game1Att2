@@ -40,11 +40,11 @@ public class ShotManager : MonoBehaviour
         Vector2 basepos = cam.transform.position;
 
         //Check if x or y of shot is greater than the camera's range. {U/R}
-        if (shot.transform.position.x > (basepos.x + cam.orthographicSize * 2) || shot.transform.position.y > (basepos.y + cam.aspect * 3))
+        if (shot.transform.position.x > (basepos.x + cam.orthographicSize * 1.75) || shot.transform.position.y > (basepos.y + cam.aspect * 3.5))
         {
             return false;
         } //Check if x or y of shot is less than the camera's range. {D/L}
-        else if (shot.transform.position.x < (basepos.x - cam.orthographicSize * 2) || shot.transform.position.y < (basepos.y - cam.aspect * 3))
+        else if (shot.transform.position.x < (basepos.x - cam.orthographicSize*cam.aspect * 1.4) || shot.transform.position.y < (basepos.y - cam.aspect * 3.5))
         {
             return false;
         }

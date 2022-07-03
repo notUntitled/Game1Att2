@@ -32,6 +32,8 @@ public class directionRay : MonoBehaviour
     public bool moving;
     public bool pause;
     public bool timePause;
+    public bool spawning;
+    public bool levelComplete;
 
     //UI
     public Image dim;
@@ -39,7 +41,7 @@ public class directionRay : MonoBehaviour
     public TMPro.TextMeshProUGUI deadSc;
 
     //OTHER managers
-    public TutorialHandler tutorialHandler;
+    public EventHandler eventHandler;
     void Start()
     {
         timeOfAttack = 0f;
@@ -85,7 +87,7 @@ public class directionRay : MonoBehaviour
         }
         else
         {
-            if (!dead && tutorialHandler.start)
+            if (!dead && eventHandler.start)
             {
                 dim.gameObject.SetActive(false);
                 Time.timeScale = 1;

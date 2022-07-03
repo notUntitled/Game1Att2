@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         //Every x seconds
-        if (Time.time - lastTime >= timeBetweenSpawn)
+        if (Time.time - lastTime >= timeBetweenSpawn && GameObject.Find("Player").GetComponent<directionRay>().spawning)
         {
             lastTime = Time.time;
             spawnEnemy(5);
