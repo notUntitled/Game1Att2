@@ -94,7 +94,7 @@ public class directionRay : MonoBehaviour
                 pauseSc.gameObject.SetActive(false);
             }
         }
-        if (!pause && !dead)
+        if (!pause && !dead && !levelComplete)
         {
             if (autoplay)
             {

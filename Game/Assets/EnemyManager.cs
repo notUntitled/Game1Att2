@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject player;
     [SerializeField]
     public GameObject enemy;
+    public GameObject fastEnemy;
     public Camera cam;
     public float lastTime;
     public int round;
@@ -42,8 +43,18 @@ public class EnemyManager : MonoBehaviour
     public GameObject spawnEnemy(float health)
     {
         Vector2 posStore = randSpawner2();
-        GameObject thisenemy = Instantiate(enemy, posStore, Quaternion.identity);
-        thisenemy.GetComponent<EnemyAI>().spawnEnemy(health, 0, posStore);
+        int enemyType = (int)Random.Range(0, 2);
+        GameObject thisenemy = null;
+        switch (enemyType)
+        {
+            case 0:
+                thisenemy = Instantiate(enemy, posStore, Quaternion.identity);
+                break;
+            case 1:
+                thisenemy = Instantiate(fastEnemy, posStore, Quaternion.identity);
+                break;
+        }   
+        thisenemy.GetComponent<EnemyAI>().spawnEnemy(health,enemyType, posStore);
         return thisenemy;
     }
 

@@ -6,6 +6,8 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject enemy;
     public GameObject player;
+    public GameObject fastEnemy;
+    public GameObject enemyType;
     [Range(0,1)]
     public float lerp;
     public float enemySpeedLimiter;
@@ -15,8 +17,18 @@ public class EnemyAI : MonoBehaviour
     public EventHandler eventHandler;
     public void spawnEnemy(float health, int type, Vector2 spawnPoint)
     {
-        setHealth(health);
         spawnPos = spawnPoint;
+        switch (type)
+        {
+            case 0:
+                setHealth(health*1f);
+                enemyType = enemy;
+                break;
+            case 1:
+                setHealth(health * .75f);
+                enemyType = fastEnemy;
+                break;
+        }
     }
 
     private void Start()
