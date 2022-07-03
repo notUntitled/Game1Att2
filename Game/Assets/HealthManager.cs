@@ -44,7 +44,7 @@ public class HealthManager : MonoBehaviour
         }
         percenHealth = t;
         healthbar1.rectTransform.sizeDelta = new Vector2(t * healthbar1.rectTransform.sizeDelta.x, healthbar1.rectTransform.sizeDelta.y);
-        healthbar1.rectTransform.localPosition = new Vector3(-150, healthbar1.rectTransform.localPosition.y, healthbar1.rectTransform.localPosition.z);
+        healthbar1.rectTransform.localPosition = new Vector3(0f, healthbar1.rectTransform.localPosition.y, healthbar1.rectTransform.localPosition.z);
         increasingLerp = true;
         healthFX();
     }
@@ -53,7 +53,7 @@ public class HealthManager : MonoBehaviour
     {
         healthbar2.rectTransform.sizeDelta = new Vector2(Mathf.Lerp(healthbar2.rectTransform.sizeDelta.x, healthbar1.rectTransform.sizeDelta.x, lerpalot), healthbar2.rectTransform.sizeDelta.y);
 
-        healthbar2.rectTransform.localPosition = new Vector3(-150, healthbar2.rectTransform.localPosition.y, healthbar2.rectTransform.localPosition.z);
+        healthbar2.rectTransform.localPosition = new Vector3(0f, healthbar2.rectTransform.localPosition.y, healthbar2.rectTransform.localPosition.z);
         
     }
 }

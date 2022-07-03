@@ -14,11 +14,11 @@ public class PlayerStats : MonoBehaviour
     public float atkSpd;
     public directionRay player;
     public HealthManager healthManager;
-    public UnityEngine.UI.Image healthbar;
+
     private void Start()
     {
         totalHealth = 5;
-        atkSpd = .5f;
+        atkSpd = .3f;
         baseDamage = 3;
         baseHealth = totalHealth;
         gold = 0;

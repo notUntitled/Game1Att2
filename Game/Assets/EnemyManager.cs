@@ -41,8 +41,9 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject spawnEnemy(float health)
     {
-        GameObject thisenemy = Instantiate(enemy, randSpawner2(), Quaternion.identity);
-        thisenemy.GetComponent<EnemyAI>().spawnEnemy(health, 0);
+        Vector2 posStore = randSpawner2();
+        GameObject thisenemy = Instantiate(enemy, posStore, Quaternion.identity);
+        thisenemy.GetComponent<EnemyAI>().spawnEnemy(health, 0, posStore);
         return thisenemy;
     }
 
