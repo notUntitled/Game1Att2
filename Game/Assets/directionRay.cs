@@ -37,6 +37,9 @@ public class directionRay : MonoBehaviour
     public Image dim;
     public TMPro.TextMeshProUGUI pauseSc;
     public TMPro.TextMeshProUGUI deadSc;
+
+    //OTHER managers
+    public TutorialHandler tutorialHandler;
     void Start()
     {
         timeOfAttack = 0f;
@@ -69,12 +72,12 @@ public class directionRay : MonoBehaviour
 #endif
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) //Pause
         {
             pause = !pause;
         }
 
-        if (pause && !dead)
+        if (pause && !dead) //While Pause
         {
             dim.gameObject.SetActive(true);
             pauseSc.gameObject.SetActive(true);
@@ -82,7 +85,7 @@ public class directionRay : MonoBehaviour
         }
         else
         {
-            if (!dead)
+            if (!dead && tutorialHandler.start)
             {
                 dim.gameObject.SetActive(false);
                 Time.timeScale = 1;
