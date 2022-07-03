@@ -5,18 +5,22 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private float baseDamage;
-    private float baseHealth;
+    private float totalHealth;
+    private float baseHealth; // current health no modifiers
     private float gold;
     private int baseShots;
     public int points;
     public Score score;
     public float atkSpd;
     public directionRay player;
+    public HealthManager healthManager;
+    public UnityEngine.UI.Image healthbar;
     private void Start()
     {
+        totalHealth = 5;
         atkSpd = .5f;
         baseDamage = 3;
-        baseHealth = 5;
+        baseHealth = totalHealth;
         gold = 0;
         baseShots = 1;
     }
@@ -58,6 +62,11 @@ public class PlayerStats : MonoBehaviour
         return baseHealth;
     }
 
+    public float getTotalHealth()
+    {
+        return totalHealth;
+    }
+
     public float getGold()
     {
         return gold;
@@ -89,6 +98,12 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Previous Health: " + baseHealth);
         baseHealth = newhealth;
         Debug.Log("New health: " + baseHealth);
+        healthManager.updateHealthBar(healthbar, 0, 150, getBaseHealth()/getTotalHealth());
+    }
+
+    public void getTotalHealth(float newTotalhealth)
+    {
+        totalHealth = newTotalhealth;
     }
 
     private void setGold(float newgold)
