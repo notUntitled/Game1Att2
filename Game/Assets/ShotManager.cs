@@ -9,7 +9,7 @@ public class ShotManager : MonoBehaviour
     public Camera cam;
     private CircleCollider2D collida;
     private float damage;
-
+    public ParticleSystem shotPar;
     private void Start()
     {
         playerref = GameObject.Find("Player");
@@ -26,8 +26,10 @@ public class ShotManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.gameObject.tag == "Enemy")
         {
+            createSpark();
             Destroy(collida.gameObject);
             GameObject enemy = collision.gameObject;
             Debug.Log("Shot an enemy with health: " + enemy.GetComponent<EnemyAI>().getHealth() + " \n Damage Done: " + getDamage());
@@ -44,7 +46,7 @@ public class ShotManager : MonoBehaviour
         {
             return false;
         } //Check if x or y of shot is less than the camera's range. {D/L}
-        else if (shot.transform.position.x < (basepos.x - cam.orthographicSize*cam.aspect * 1.4) || shot.transform.position.y < (basepos.y - cam.aspect * 3.5))
+        else if (shot.transform.position.x < (basepos.x - cam.orthographicSize * cam.aspect * 1.4) || shot.transform.position.y < (basepos.y - cam.aspect * 3.5))
         {
             return false;
         }
@@ -57,5 +59,11 @@ public class ShotManager : MonoBehaviour
     private float getDamage()
     {
         return damage;
+    }
+
+    void createSpark()
+    {
+        ParticleSystem par = Instantiate(shotPar, shot.transform.position, Quaternion.identity);
+        par.Play();
     }
 }

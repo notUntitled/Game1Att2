@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float atkSpd;
     public directionRay player;
     public HealthManager healthManager;
+    public ParticleSystem hitPar;
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("collision");
         if (collision.gameObject.tag == "Enemy")
         {
+            hitPar.Play();
             Debug.Log("Enemy collided");
             setBaseHealth(baseHealth - collision.gameObject.GetComponent<EnemyAI>().getHealth());
             GameObject.Destroy(collision.gameObject);

@@ -43,6 +43,9 @@ public class directionRay : MonoBehaviour
 
     //OTHER managers
     public EventHandler eventHandler;
+
+    //PARTICLES
+    public ParticleSystem shotPar;
     void Start()
     {
         timeOfAttack = 0f;
@@ -117,6 +120,7 @@ public class directionRay : MonoBehaviour
                 if (Time.time - shotTimer >= tBtShots)
                 {
                     shotTimer = Time.time;
+                    shotPar.Play();
                     shotsList.Add(shootShot(thinking / thinking.magnitude * deLimiter, getSpawnPoint(thinking)));
                 }
             }
