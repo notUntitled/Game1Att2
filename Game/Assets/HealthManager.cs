@@ -6,6 +6,7 @@ public class HealthManager : MonoBehaviour
 {
     public UnityEngine.UI.Image healthbar1;
     public UnityEngine.UI.Image healthbar2;
+    public TMPro.TextMeshProUGUI healthText;
     public PlayerStats stats;
     public float percenHealth;
     [Range(0f,1f)]
@@ -43,6 +44,7 @@ public class HealthManager : MonoBehaviour
             t = 0;
         }
         percenHealth = t;
+        healthText.text = stats.getBaseHealth() +"/"+ stats.getTotalHealth();
         healthbar1.rectTransform.sizeDelta = new Vector2(t * healthbar1.rectTransform.sizeDelta.x, healthbar1.rectTransform.sizeDelta.y);
         healthbar1.rectTransform.localPosition = new Vector3(0f, healthbar1.rectTransform.localPosition.y, healthbar1.rectTransform.localPosition.z);
         increasingLerp = true;
