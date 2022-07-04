@@ -20,6 +20,7 @@ public class directionRay : MonoBehaviour
     public Transform mouseSim;
     public bool dead;
     public float timeOfAttack;
+    public int stage;
 
     //Auto play
     public Vector2 thinking;

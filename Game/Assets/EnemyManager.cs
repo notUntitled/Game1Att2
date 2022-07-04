@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     public GameObject enemy;
     public GameObject fastEnemy;
+    public GameObject tankEnemy;
     public Camera cam;
     public float lastTime;
     public int round;
@@ -43,7 +44,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject spawnEnemy(float health)
     {
         Vector2 posStore = randSpawner2();
-        int enemyType = (int)Random.Range(0, 2);
+        int enemyType = (int)Random.Range(0, GameObject.Find("Player").GetComponent<directionRay>().stage);
         GameObject thisenemy = null;
         switch (enemyType)
         {
@@ -53,7 +54,10 @@ public class EnemyManager : MonoBehaviour
             case 1:
                 thisenemy = Instantiate(fastEnemy, posStore, Quaternion.identity);
                 break;
-        }   
+            case 2:
+                thisenemy = Instantiate(tankEnemy, posStore, Quaternion.identity);
+                break;
+        }
         thisenemy.GetComponent<EnemyAI>().spawnEnemy(health,enemyType, posStore);
         return thisenemy;
     }

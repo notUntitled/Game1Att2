@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        totalHealth = 5;
+        totalHealth = 10;
         atkSpd = .3f;
         baseDamage = 3;
         baseHealth = totalHealth;

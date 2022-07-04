@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject player;
     public GameObject fastEnemy;
     public GameObject enemyType;
+    public GameObject tankEnemy;
     [Range(0,1)]
     public float lerp;
     public float enemySpeedLimiter;
@@ -27,6 +28,10 @@ public class EnemyAI : MonoBehaviour
             case 1:
                 setHealth(health * .75f);
                 enemyType = fastEnemy;
+                break;
+            case 2:
+                setHealth(health * 2);
+                enemyType = tankEnemy;
                 break;
         }
     }
