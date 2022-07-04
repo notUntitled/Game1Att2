@@ -22,15 +22,15 @@ public class EnemyAI : MonoBehaviour
         switch (type)
         {
             case 0:
-                setHealth(health*1f);
+                setHealth((int)(health*1f));
                 enemyType = enemy;
                 break;
             case 1:
-                setHealth(health * .75f);
+                setHealth((int)(health * .75f));
                 enemyType = fastEnemy;
                 break;
             case 2:
-                setHealth(health * 2);
+                setHealth((int)(health * 2));
                 enemyType = tankEnemy;
                 break;
         }

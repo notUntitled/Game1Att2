@@ -54,6 +54,23 @@ MonoBehaviour:
   maxDis: 10
   forceMult: 140
   mouseSim: {fileID: 0}
+  dead: 0
+  timeOfAttack: 0
+  stage: 0
+  thinking: {x: 0, y: 0}
+  autoplay: 0
+  shotTimer: 0
+  tBtShots: 0.5
+  playerRef: {fileID: 0}
+  moving: 0
+  pause: 0
+  timePause: 0
+  spawning: 0
+  levelComplete: 0
+  dim: {fileID: 0}
+  pauseSc: {fileID: 0}
+  deadSc: {fileID: 0}
+  eventHandler: {fileID: 0}
 --- !u!114 &7115088128654877944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,10 +85,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7115088128654877951}
   enemy: {fileID: 4313185539336848132, guid: 930b52a2bacae1f40966def80d50b364, type: 3}
-  health: 0
+  fastEnemy: {fileID: 0}
+  tankEnemy: {fileID: 0}
   cam: {fileID: 0}
   lastTime: 0
   round: 0
+  camDelim: 0
+  spawn1: {fileID: 0}
+  spawn2: {fileID: 0}
+  spawn3: {fileID: 0}
+  spawn4: {fileID: 0}
+  boundvariable: 0
   timeBetweenSpawn: 1
 --- !u!1 &7115088129476918570
 GameObject:

@@ -128,7 +128,7 @@ MonoBehaviour:
   enemyType: {fileID: 0}
   tankEnemy: {fileID: 0}
   lerp: 0
-  enemySpeedLimiter: 3
+  enemySpeedLimiter: 6
   manager: {fileID: 0}
   spawnPos: {x: 0, y: 0}
   eventHandler: {fileID: 0}
