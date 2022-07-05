@@ -15,9 +15,11 @@ public class PlayerStats : MonoBehaviour
     public directionRay player;
     public HealthManager healthManager;
     public ParticleSystem hitPar;
+    public ScreenShake screenShake;
 
     private void Start()
     {
+        screenShake = GameObject.Find("CameraAnchor").GetComponent<ScreenShake>();
         totalHealth = 10;
         atkSpd = .3f;
         baseDamage = 3;
@@ -33,6 +35,7 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("collision");
         if (collision.gameObject.tag == "Enemy")
         {
+            screenShake.ShakeScreen(0.15f, 0.4f);
             hitPar.Play();
             Debug.Log("Enemy collided");
             setBaseHealth(baseHealth - collision.gameObject.GetComponent<EnemyAI>().getHealth());

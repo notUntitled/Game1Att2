@@ -10,8 +10,12 @@ public class ShotManager : MonoBehaviour
     private CircleCollider2D collida;
     private float damage;
     public ParticleSystem shotPar;
+    public ScreenShake screenShake;
+    public bool shaking;
     private void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        screenShake = GameObject.Find("CameraAnchor").GetComponent<ScreenShake>();
         playerref = GameObject.Find("Player");
         damage = playerref.GetComponent<PlayerStats>().getBaseDamage();
         collida = shot.GetComponent<CircleCollider2D>();
@@ -29,6 +33,7 @@ public class ShotManager : MonoBehaviour
         
         if (collision.gameObject.tag == "Enemy")
         {
+            screenShake.ShakeScreen(0.15f, 0.4f);
             createSpark();
             Destroy(collida.gameObject);
             GameObject enemy = collision.gameObject;

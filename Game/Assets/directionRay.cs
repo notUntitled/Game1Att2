@@ -159,6 +159,7 @@ public class directionRay : MonoBehaviour
 
     public void playerDied()
     {
+        StopAllCoroutines();
         dead = true;
         dim.gameObject.SetActive(true);
         deadSc.gameObject.SetActive(true);
