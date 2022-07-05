@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7115088128654877951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7115088128654877950}
+  - component: {fileID: 7115088128654877945}
+  - component: {fileID: 7115088128654877944}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7115088128654877950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115088128654877951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7115088129476918741}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7115088128654877945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115088128654877951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd69c2538060bfe41a5c6d6fb6c98f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7115088128654877950}
+  deNormalizer: 10
+  deLimiter: 1
+  shot: {fileID: 6419985835575836963, guid: 5f396817a277f1b4e82671512ab0c5b2, type: 3}
+  shotsList: []
+  localSpawn: {fileID: 7115088129476918741}
+  maxDis: 10
+  forceMult: 140
+  mouseSim: {fileID: 0}
+  dead: 0
+  timeOfAttack: 0
+  stage: 0
+  thinking: {x: 0, y: 0}
+  autoplay: 0
+  shotTimer: 0
+  tBtShots: 0.5
+  playerRef: {fileID: 0}
+  moving: 0
+  pause: 0
+  timePause: 0
+  spawning: 0
+  levelComplete: 0
+  dim: {fileID: 0}
+  pauseSc: {fileID: 0}
+  deadSc: {fileID: 0}
+  eventHandler: {fileID: 0}
+  shotPar: {fileID: 0}
+--- !u!114 &7115088128654877944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115088128654877951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d3f536e22607b40b93601e411cc4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7115088128654877951}
+  enemy: {fileID: 4313185539336848132, guid: 3a9e416a51e5beb4ab731adc384ee5c9, type: 3}
+  fastEnemy: {fileID: 0}
+  tankEnemy: {fileID: 0}
+  cam: {fileID: 0}
+  lastTime: 0
+  round: 0
+  camDelim: 0
+  spawn1: {fileID: 0}
+  spawn2: {fileID: 0}
+  spawn3: {fileID: 0}
+  spawn4: {fileID: 0}
+  boundvariable: 0
+  timeBetweenSpawn: 1
+--- !u!1 &7115088129476918570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7115088129476918741}
+  m_Layer: 0
+  m_Name: LocalSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7115088129476918741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115088129476918570}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3780484, y: 1.2391307, z: -71.3958}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7115088128654877950}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

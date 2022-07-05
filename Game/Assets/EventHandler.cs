@@ -21,7 +21,6 @@ public class EventHandler : MonoBehaviour
     void Start()
     {
         firstPos = StageCompleteSc.rectTransform.position.x;
-        totalKills = 20;
         player = GameObject.Find("Player").GetComponent<directionRay>();
         start = false;
     }

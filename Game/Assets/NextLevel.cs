@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
-    public string nextLevel;
+    public int nextLevel;
 
     private void Start()
     {
-        nextLevel = "Stage1";
+       
     }
     public void GoNextLevel()
     {

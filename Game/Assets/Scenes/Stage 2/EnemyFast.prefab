@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 1a03ef6b9955c03469adedad601571ef, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 84a33ebcf3313c146acea6e56b1cf532, type: 3}
   m_Color: {r: 0.514151, g: 0.948557, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6948894086038999880
@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4097440245403801450}
-  player: {fileID: 7115088128654877951, guid: a48ddfb732d135049adcade79f5c75df, type: 3}
+  player: {fileID: 7115088128654877951, guid: c377f98c2c0d4c847bfc3438759b1041, type: 3}
   fastEnemy: {fileID: 4097440245403801450}
-  enemyType: {fileID: 4097440245403801450}
-  tankEnemy: {fileID: 3399510967987679123, guid: 920ca8c8095066841bf2e71682633f76, type: 3}
+  enemyType: {fileID: 0}
+  tankEnemy: {fileID: 0}
   lerp: 0
   enemySpeedLimiter: 0.25
   manager: {fileID: 0}
