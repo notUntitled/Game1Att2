@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private float baseDamage;
-    private float totalHealth;
+    private static float baseDamage;
+    private static float totalHealth;
     private float baseHealth; // current health no modifiers
-    private float gold;
+    private static float gold;
     private int baseShots;
     public int points;
     public Score score;
-    public float atkSpd;
+    public static float atkSpd;
     public directionRay player;
     public HealthManager healthManager;
     public ParticleSystem hitPar;

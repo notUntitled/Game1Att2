@@ -66,6 +66,7 @@
     <Compile Include="Assets\ShotManager.cs" />
     <Compile Include="Assets\NextLevel.cs" />
     <Compile Include="Assets\ScreenShake.cs" />
+    <Compile Include="Assets\MusicLoop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
