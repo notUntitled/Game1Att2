@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    //I could set all floats to float? and check if null OR
+    public static bool setStats;
+    //
     private static float baseDamage;
     private static float totalHealth;
     private float baseHealth; // current health no modifiers
@@ -20,17 +23,20 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         screenShake = GameObject.Find("CameraAnchor").GetComponent<ScreenShake>();
-        totalHealth = 10;
-        atkSpd = .3f;
-        baseDamage = 3;
-        baseHealth = totalHealth;
-        gold = 0;
-        baseShots = 1;
-    }
+        if (setStats == false)
+        {
+            totalHealth = 10;
+            atkSpd = .3f;
+            baseDamage = 3;
+            baseHealth = totalHealth;
+            gold = 0;
+            baseShots = 1;
+        }
+        }
 
-    //Functionality
+        //Functionality
 
-    private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("collision");
         if (collision.gameObject.tag == "Enemy")

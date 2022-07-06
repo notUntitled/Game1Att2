@@ -67,6 +67,8 @@
     <Compile Include="Assets\NextLevel.cs" />
     <Compile Include="Assets\ScreenShake.cs" />
     <Compile Include="Assets\MusicLoop.cs" />
+    <Compile Include="Assets\Shop.cs" />
+    <Compile Include="Assets\PlayPress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
